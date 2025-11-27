@@ -15,35 +15,60 @@ export function Hero({ heroImage }: HeroProps) {
   return (
     <section 
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image with Overlay */}
+      {/* Background Placeholder */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ 
-          backgroundImage: `url(${heroImage})`,
-          filter: 'brightness(0.4)'
-        }}
-      />
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ backgroundColor: '#333333' }}
+      >
+        <div className="absolute inset-0 bg-black opacity-50" />
+      </div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-white mb-6">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-20 sm:px-20 lg:px-24 text-center flex flex-col justify-center min-h-screen">
+        <div className="max-w-4xl mx-auto" style={{ marginBottom: '15%', padding: '0 32px' }}>
+          <h1 
+            style={{ 
+              fontSize: 'clamp(34px, 5vw, 48px)',
+              fontWeight: 700,
+              color: 'white',
+              background: 'linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              lineHeight: '1.2',
+              marginBottom: '36px'
+            }}
+          >
             قص وتشكيل الرخام والجرانيت – تنفيذ وتركيب بأعلى جودة
           </h1>
           
-          <p className="text-white text-xl mb-10 leading-relaxed opacity-90">
+          <p 
+            className="text-white opacity-90"
+            style={{ 
+              fontSize: '20px',
+              lineHeight: '1.8',
+              marginBottom: '80px'
+            }}
+          >
             بيع وتركيب الواجهات، النوافذ، الأبواب، المطابخ، السلالم والأرضيات
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a 
               href="https://wa.me/218914360900"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 rounded-lg text-white transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
-              style={{ backgroundColor: '#0054A6' }}
+              className="transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3"
+              style={{ 
+                backgroundColor: '#0054A6',
+                color: 'white',
+                padding: '18px 36px',
+                borderRadius: '16px',
+                fontSize: '18px',
+                fontWeight: 600
+              }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#C9A04E';
                 e.currentTarget.style.transform = 'translateY(-2px)';
@@ -61,11 +86,22 @@ export function Hero({ heroImage }: HeroProps) {
 
             <button 
               onClick={() => scrollToSection('projects')}
-              className="px-8 py-4 rounded-lg border-2 border-white text-white transition-all duration-300 hover:bg-white flex items-center gap-2"
+              className="transition-all duration-300 hover:bg-white flex items-center gap-3"
+              style={{
+                padding: '18px 36px',
+                borderRadius: '16px',
+                border: '2px solid white',
+                color: 'white',
+                backgroundColor: 'transparent',
+                fontSize: '18px',
+                fontWeight: 600
+              }}
               onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
                 e.currentTarget.style.color = '#0054A6';
               }}
               onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
                 e.currentTarget.style.color = 'white';
               }}
             >

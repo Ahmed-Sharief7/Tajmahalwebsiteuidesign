@@ -1,96 +1,175 @@
-import { Scissors, ShoppingBag, ChefHat, ArrowUpCircle, Building2, DoorOpen, Layers, ClipboardCheck } from 'lucide-react';
+import { useState } from 'react';
 
 interface Service {
-  icon: React.ReactNode;
   title: string;
   description: string;
+  placeholderLabel: string;
 }
 
 export function Services() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const services: Service[] = [
     {
-      icon: <Scissors size={40} />,
       title: 'قص وتشكيل الرخام والجرانيت',
-      description: 'قص وتشكيل احترافي بأحدث التقنيات والمعدات'
+      description: 'قص وتشكيل احترافي بأحدث التقنيات والمعدات لضمان دقة عالية وجودة ممتازة',
+      placeholderLabel: 'Cutting Service Photo'
     },
     {
-      icon: <ShoppingBag size={40} />,
       title: 'بيع خامات الرخام والجرانيت',
-      description: 'مجموعة واسعة من الخامات الأصلية المستوردة'
+      description: 'مجموعة واسعة من الخامات الأصلية المستوردة بأفضل الأسعار',
+      placeholderLabel: 'Stone Materials Photo'
     },
     {
-      icon: <ChefHat size={40} />,
       title: 'تركيب المطابخ',
-      description: 'تصميم وتركيب مطابخ عصرية بأفخم أنواع الرخام'
+      description: 'تصميم وتركيب مطابخ عصرية بأفخم أنواع الرخام والجرانيت',
+      placeholderLabel: 'Kitchen Photo'
     },
     {
-      icon: <ArrowUpCircle size={40} />,
       title: 'تركيب السلالم',
-      description: 'تنفيذ وتركيب السلالم بدقة ومتانة عالية'
+      description: 'تنفيذ وتركيب السلالم بدقة ومتانة عالية تدوم لسنوات',
+      placeholderLabel: 'Stairs Photo'
     },
     {
-      icon: <Building2 size={40} />,
       title: 'تركيب الواجهات',
-      description: 'واجهات فاخرة من الرخام والجرانيت الطبيعي'
+      description: 'واجهات فاخرة من الرخام والجرانيت الطبيعي تعكس الفخامة والأناقة',
+      placeholderLabel: 'Facade Photo'
     },
     {
-      icon: <DoorOpen size={40} />,
       title: 'تركيب النوافذ والأبواب',
-      description: 'إطارات وعتبات من الرخام والجرانيت'
+      description: 'إطارات وعتبات من الرخام والجرانيت بتصاميم متنوعة',
+      placeholderLabel: 'Windows & Doors Photo'
     },
     {
-      icon: <Layers size={40} />,
       title: 'تنفيذ الأرضيات',
-      description: 'أرضيات رخامية وجرانيتية بتصاميم متنوعة'
+      description: 'أرضيات رخامية وجرانيتية بتصاميم متنوعة وألوان جذابة',
+      placeholderLabel: 'Flooring Photo'
     },
     {
-      icon: <ClipboardCheck size={40} />,
       title: 'الإشراف على التنفيذ',
-      description: 'متابعة كاملة لضمان أعلى جودة في التنفيذ'
+      description: 'متابعة كاملة لضمان أعلى جودة في التنفيذ من البداية للنهاية',
+      placeholderLabel: 'Supervision Photo'
     }
   ];
 
   return (
     <section 
       id="services" 
-      className="py-20"
-      style={{ backgroundColor: '#E2E2E2' }}
+      style={{ 
+        padding: '120px 0',
+        backgroundColor: '#E2E2E2' 
+      }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="mb-4" style={{ color: '#0054A6' }}>خدماتنا</h2>
-          <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#C9A04E' }}></div>
-          <p className="mt-6 text-xl" style={{ color: '#333333' }}>
+      <div className="max-w-[1400px] mx-auto px-20 sm:px-20 lg:px-24">
+        <div className="text-center" style={{ marginBottom: '80px', padding: '0 32px' }}>
+          <h2 
+            style={{ 
+              color: '#0054A6',
+              fontSize: 'clamp(34px, 5vw, 48px)',
+              fontWeight: 700,
+              marginBottom: '32px'
+            }}
+          >
+            خدماتنا
+          </h2>
+          <div 
+            className="mx-auto" 
+            style={{ 
+              width: '120px', 
+              height: '6px', 
+              backgroundColor: '#C9A04E',
+              borderRadius: '6px',
+              marginBottom: '28px'
+            }}
+          />
+          <p 
+            style={{ 
+              color: '#333333',
+              fontSize: '20px',
+              lineHeight: '1.8',
+              maxWidth: '700px',
+              margin: '0 auto',
+              marginBottom: '0'
+            }}
+          >
             نقدم حلولاً شاملة ومتكاملة في مجال الرخام والجرانيت
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+          style={{ gap: '32px' }}
+        >
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-8px)';
+              className="relative overflow-hidden cursor-pointer transition-all duration-300"
+              style={{
+                borderRadius: '18px',
+                height: '400px',
+                transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)',
+                boxShadow: hoveredIndex === index 
+                  ? '0 20px 40px rgba(0, 0, 0, 0.2)' 
+                  : '0 4px 12px rgba(0, 0, 0, 0.1)'
               }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
+              {/* Placeholder Background */}
               <div 
-                className="w-16 h-16 rounded-lg flex items-center justify-center mb-4 transition-colors duration-300"
-                style={{ backgroundColor: '#0054A6', color: 'white' }}
+                className="absolute inset-0 flex items-center justify-center"
+                style={{
+                  backgroundColor: '#999999',
+                  border: '2px dashed #C9A04E'
+                }}
               >
-                {service.icon}
+                <p style={{ color: '#ffffff', fontSize: '12px', textAlign: 'center', padding: '10px' }}>
+                  {service.placeholderLabel}
+                </p>
               </div>
-              
-              <h4 className="mb-3" style={{ color: '#333333' }}>
-                {service.title}
-              </h4>
-              
-              <p className="text-base leading-relaxed" style={{ color: '#666' }}>
-                {service.description}
-              </p>
+
+              {/* Dark Gradient Overlay at Bottom - Always Visible */}
+              <div 
+                className="absolute bottom-0 left-0 right-0 transition-all duration-300"
+                style={{
+                  background: hoveredIndex === index 
+                    ? 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.4) 100%)' 
+                    : 'linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%)',
+                  padding: hoveredIndex === index ? '32px 32px 32px 32px' : '32px 32px 32px 32px',
+                  height: hoveredIndex === index ? '100%' : 'auto',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                {/* Service Title - Always Visible */}
+                <h4 
+                  className="text-white transition-all duration-300"
+                  style={{ 
+                    fontWeight: 600,
+                    fontSize: hoveredIndex === index ? '20px' : '18px',
+                    marginBottom: hoveredIndex === index ? '20px' : '0',
+                    textAlign: 'center'
+                  }}
+                >
+                  {service.title}
+                </h4>
+
+                {/* Description - Visible on Hover */}
+                <p 
+                  className="text-white transition-all duration-300"
+                  style={{ 
+                    lineHeight: '1.7',
+                    fontSize: '15px',
+                    textAlign: 'center',
+                    opacity: hoveredIndex === index ? 1 : 0,
+                    transform: hoveredIndex === index ? 'translateY(0)' : 'translateY(10px)'
+                  }}
+                >
+                  {service.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
